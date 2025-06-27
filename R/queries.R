@@ -71,21 +71,19 @@ make_plot_data <- function(depth, position, length) {
   len <- length[,c(4,3,5,6,7,8,9)]
   names(len) <- c("Station", "Haul", "SpeciesCode", "Sex", "DepthStratum", "Length", "Num")
 
-  len2 <- len %>%
+  lengths <- len %>%
     dplyr::group_by(Station, Haul, Sex, Length) %>%
     dplyr::summarize(Tot = sum(Num))
 
-  len2$lab <- ifelse((len2$Length %% 2) == 0,"Even","Odd")
+  lengths$lab <- ifelse((lengths$Length %% 2) == 0,"Even","Odd")
 
-  len2$Tot <- ifelse(len2$Sex==2, -len2$Tot, len2$Tot)
+  lengths$Tot <- ifelse(lengths$Sex==2, -lengths$Tot, lengths$Tot)
 
-  len3 <- len2[len2$Station == sta,]
+  lengths$Sex = ifelse(lengths$Sex==1, "Male",
+                    ifelse(lengths$Sex == 2, "Female", "Unsexed"))
 
-  len3$Sex = ifelse(len3$Sex==1, "Male",
-                    ifelse(len3$Sex == 2, "Female", "Unsexed"))
-
-  testE <- len3[len3$lab == "Even", ]
-  testO <- len3[len3$lab == "Odd", ]
+  lenE <- lengths[lengths$lab == "Even", ]
+  lenO <- lengths[lengths$lab == "Odd", ]
 
   ###Check start/end points relative to expected locations of longline
   ###
@@ -108,5 +106,5 @@ make_plot_data <- function(depth, position, length) {
     dplyr::separate(EndLon, c("deg", "min"), 3, convert = TRUE)
   StnLoc$EndLon <- -EndLon$deg - EndLon$min / 60
 
-  plot_data <- list(depth, chx, len3, testE, testO, StnLoc)
+  plot_data <- list(depth, chx, lengths, lenE, lenO, StnLoc)
 }

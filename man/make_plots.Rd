@@ -4,18 +4,20 @@
 \alias{make_plots}
 \title{Make QAQC plots}
 \usage{
-make_plots(depth, chx, len3, testE, testO, StnLoc)
+make_plots(sta, depth, chx, lengths, lenE, lenO, StnLoc)
 }
 \arguments{
+\item{sta}{station number}
+
 \item{depth}{depths of each skate of gear}
 
 \item{chx}{check that start and ends are near skate depths}
 
-\item{len3}{sablefish length data}
+\item{lengths}{sablefish length data}
 
-\item{testE}{even lengths}
+\item{lenE}{even lengths}
 
-\item{testO}{odd lengths}
+\item{lenO}{odd lengths}
 
 \item{StnLoc}{station locations to compare with standard setting positions}
 }
