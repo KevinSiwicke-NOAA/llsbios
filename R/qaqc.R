@@ -30,7 +30,7 @@ tdr <- function(station) {
 
   tdr_dat$Diff <- c(0,diff(tdr_dat$Depth))
   tdr_dat$Time <- as.POSIXct(strptime(tdr_dat$Time, format = "%H:%M:%S"))
-  bot <- as.data.frame(tdr_dat[abs(tdr_dat$Diff) <= 0.03 & tdr$Depth > (max(tdr$Depth) - 30), ])
+  bot <- as.data.frame(tdr_dat[abs(tdr_dat$Diff) <= 0.03 & tdr_dat$Depth > (max(tdr_dat$Depth) - 30), ])
   bot <- bot[abs(bot$Depth - mean(bot$Depth)) <= 1.5, ]
 
   Year <- lubridate::year(bot$Time[1])
@@ -65,7 +65,7 @@ tdr <- function(station) {
     ggplot2::theme_bw() +
     ggplot2::scale_y_reverse() +
     ggplot2::ggtitle(paste0("Station #", station, ", Depth = ", Depth, ", Gear Temperature = ", MeanTemp)) +
-    ggplot2::theme(plot.title = element_text(color = "red"))
+    ggplot2::theme(plot.title = ggplot2::element_text(color = "red"))
 
   p2 <- ggplot2::ggplot(data = updat, ggplot2::aes(x = Temperature, y = Depth)) +
     ggplot2::geom_path() +
