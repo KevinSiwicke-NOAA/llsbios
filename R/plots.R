@@ -7,12 +7,13 @@
 #' @param lenE even lengths
 #' @param lenO odd lengths
 #' @param StnLoc station locations to compare with standard setting positions
+#' @param stnd standard setting positions by station
 #'
 #' @return saved plots
 #' @export
 #'
 #' @examples
-make_plots <- function(sta, depth, chx, lengths, lenE, lenO, StnLoc) {
+make_plots <- function(sta, depth, chx, lengths, lenE, lenO, StnLoc, stnd) {
   Deps <- ggplot2::ggplot(data = depth, ggplot2::aes(x = hachi, y = intrpdep, color = factor(haul))) +
     ggplot2::geom_point() +
     ggplot2::geom_point(data = chx, ggplot2::aes(x = hachi, y = depth), color = "black", shape = 4, size = 3) +

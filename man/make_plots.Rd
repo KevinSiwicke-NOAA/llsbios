@@ -4,7 +4,7 @@
 \alias{make_plots}
 \title{Make QAQC plots}
 \usage{
-make_plots(sta, depth, chx, lengths, lenE, lenO, StnLoc)
+make_plots(sta, depth, chx, lengths, lenE, lenO, StnLoc, stnd)
 }
 \arguments{
 \item{sta}{station number}
@@ -20,6 +20,8 @@ make_plots(sta, depth, chx, lengths, lenE, lenO, StnLoc)
 \item{lenO}{odd lengths}
 
 \item{StnLoc}{station locations to compare with standard setting positions}
+
+\item{stnd}{standard setting positions by station}
 }
 \value{
 saved plots
