@@ -20,8 +20,6 @@ get_data <- function(channel, sta_num) {
   length <- RODBC::sqlQuery( channel, paste ("select * from Length where species_code = 20510 and station = ", sta_num)) %>%
     dplyr::rename_all(tolower)
 
-  RODBC::odbcClose(channel)
-
   stnds <- readRDS(system.file("extdata", "std_set.rds", package = "llsbios"))
   stnd <- stnds[stnds$Station == sta_num, ]
 
