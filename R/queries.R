@@ -87,10 +87,8 @@ make_plot_data <- function(depth, position, length) {
 
   ###Check start/end points relative to expected locations of longline
   ###
-  loc <- position[, c(3, 4, 7, 10, 13, 16)]
-  names(loc) <- c("Station", "Haul", "StartLat", "StartLon", "EndLat", "EndLon")
-
-  StnLoc <- loc[loc$Station == sta, ]
+  StnLoc <- position[, c(3, 4, 7, 10, 13, 16)]
+  names(StnLoc) <- c("Station", "Haul", "StartLat", "StartLon", "EndLat", "EndLon")
 
   #Convert screwy lat/long format
   StartLat <- StnLoc %>%
