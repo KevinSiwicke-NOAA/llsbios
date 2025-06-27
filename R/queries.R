@@ -92,16 +92,16 @@ make_plot_data <- function(depth, position, length) {
 
   #Convert screwy lat/long format
   StartLat <- StnLoc %>%
-    dplyr::separate(StartLat, c("deg", "min"), 2, convert = TRUE)
+    tidyr::separate(StartLat, c("deg", "min"), 2, convert = TRUE)
   StnLoc$StartLat <- StartLat$deg + StartLat$min / 60
   StartLon <- StnLoc %>%
-    dplyr::separate(StartLon, c("deg", "min"), 3, convert = TRUE)
+    tidyr::separate(StartLon, c("deg", "min"), 3, convert = TRUE)
   StnLoc$StartLon <- -StartLon$deg - StartLon$min / 60
   EndLat <- StnLoc %>%
-    dplyr::separate(EndLat, c("deg", "min"), 2, convert = TRUE)
+    tidyr::separate(EndLat, c("deg", "min"), 2, convert = TRUE)
   StnLoc$EndLat <- EndLat$deg + EndLat$min / 60
   EndLon <- StnLoc %>%
-    dplyr::separate(EndLon, c("deg", "min"), 3, convert = TRUE)
+    tidyr::separate(EndLon, c("deg", "min"), 3, convert = TRUE)
   StnLoc$EndLon <- -EndLon$deg - EndLon$min / 60
 
   plot_data <- list(depth, chx, lengths, lenE, lenO, StnLoc)
