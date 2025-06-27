@@ -29,7 +29,7 @@ tdr <- function(station) {
   colnames(tdr_dat) <- c("Temperature","Depth","Date","Time")
 
   tdr_dat$Diff <- c(0,diff(tdr_dat$Depth))
-  tdr_dat$Time <- as.POSIXct(lubridate::strptime(tdr_dat$Time, format = "%H:%M:%S"))
+  tdr_dat$Time <- as.POSIXct(strptime(tdr_dat$Time, format = "%H:%M:%S"))
   bot <- as.data.frame(tdr_dat[abs(tdr_dat$Diff) <= 0.03 & tdr$Depth > (max(tdr$Depth) - 30), ])
   bot <- bot[abs(bot$Depth - mean(bot$Depth)) <= 1.5, ]
 
