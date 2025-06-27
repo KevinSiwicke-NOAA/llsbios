@@ -38,8 +38,8 @@ make_plots <- function(sta, depth, chx, lengths, lenE, lenO, StnLoc) {
       ggplot2::theme_bw() +
       ggplot2::theme(axis.title = ggplot2::element_text(size = 14),
                      axis.text = ggplot2::element_text(size = 12),
-                     strip.background = element_blank(),
-                     panel.border = theme_L_border(),
+                     strip.background = ggplot2::element_blank(),
+                     panel.border = llsbios::theme_L_border(),
                      panel.grid.major = ggplot2::element_blank(),
                      panel.grid.minor = ggplot2::element_blank(),
                      strip.text = ggplot2::element_text(size = 12))
@@ -59,14 +59,13 @@ make_plots <- function(sta, depth, chx, lengths, lenE, lenO, StnLoc) {
       ggplot2::theme(axis.title = ggplot2::element_text(size = 14),
                      axis.text = ggplot2::element_text(size = 12),
                      strip.background = ggplot2::element_blank(),
-                     panel.border = theme_L_border(),
+                     panel.border = llsbios::theme_L_border(),
                      panel.grid.major = ggplot2::element_blank(),
                      panel.grid.minor = ggplot2::element_blank(),
                      strip.text = ggplot2::element_text(size = 12))
   }
 
   ggplot2::ggsave(hist, file = paste0("Today/Sta", sta, "_LenHist.png"))
-
 
   location <- ggplot2::ggplot() +
     ggplot2::geom_point(data = stnd, ggplot2::aes(x = Lon, y = Lat), col = "gray") +
