@@ -17,7 +17,7 @@ get_data <- function(channel, sta_num) {
   position <- RODBC::sqlQuery(channel, base::paste0("select * from Haul_position where station = ", sta_num)) %>%
     dplyr::rename_all(tolower)
 
-  length <- RODBC::sqlQuery( channel, paste ("select * from Length where SpeciesCode = 20510 and station = ", sta_num)) %>%
+  length <- RODBC::sqlQuery( channel, paste ("select * from Length where species_code = 20510 and station = ", sta_num)) %>%
     dplyr::rename_all(tolower)
 
   RODBC::odbcClose(channel)
