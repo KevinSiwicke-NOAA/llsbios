@@ -29,13 +29,12 @@ tdr <- function(station) {
   colnames(tdr_dat) <- c("Temperature","Depth","Date","Time")
 
   tdr_dat$Diff <- c(0,diff(tdr_dat$Depth))
-  tdr_dat$Time <- lubridate::as.POSIXct(lubridate::strptime(tdr_dat$Time, format = "%H:%M:%S"))
-  tdr_dat$Julian <- as.numeric(format(lubridate::as.Date(tdr_dat$Date, format="%d %b %Y"), "%j"))
+  tdr_dat$Time <- as.POSIXct(lubridate::strptime(tdr_dat$Time, format = "%H:%M:%S"))
   bot <- as.data.frame(tdr_dat[abs(tdr_dat$Diff) <= 0.03 & tdr$Depth > (max(tdr$Depth) - 30), ])
   bot <- bot[abs(bot$Depth - mean(bot$Depth)) <= 1.5, ]
 
-  Year <- lubridate::year(tdr_dat$Time[1])
-  Julian <- round(mean(bot$Julian), 0)
+  Year <- lubridate::year(bot$Time[1])
+  Julian <- lubridate::yday(bot$Time[1])
   Station <- station
   Depth <- round(mean(bot$Depth), 1)
   MeanTemp <- round(mean(bot$Temperature), 2)
@@ -76,7 +75,7 @@ tdr <- function(station) {
     ggplot2::scale_y_reverse() +
     ggplot2::theme_bw()
 
-  tdrCheck <- gridExtraarrangeGrob(p1, p2)
+  tdrCheck <- cowplot::plot_grid(p1, p2, align = 'v')
 
   ggplot2::ggsave(tdrCheck, file=paste0("TDR/Today/Sta",station,"_TDRcheck.png"))
 
