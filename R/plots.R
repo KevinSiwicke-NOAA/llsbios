@@ -23,7 +23,7 @@ make_plots <- function(sta, depth, chx, lengths, lenE, lenO, StnLoc, stnd) {
     ggplot2::ggtitle(paste("Station", sta)) +
     ggplot2::theme_bw()
 
-  ggplot2::ggsave(Deps, file=paste0("Today/Sta",sta,"_DepthCheck.png"))
+  ggplot2::ggsave(Deps, file=paste0("QAQC/Today/Sta",sta,"_DepthCheck.png"))
 
   if(length(unique(lengths$Haul)) == 2) {
     hist <-  ggplot2::ggplot(data = lenE, ggplot2::aes(x = Length, weight = Tot, fill = Sex)) +
@@ -64,7 +64,7 @@ make_plots <- function(sta, depth, chx, lengths, lenE, lenO, StnLoc, stnd) {
                      strip.text = ggplot2::element_text(size = 12))
   }
 
-  ggplot2::ggsave(hist, file = paste0("Today/Sta", sta, "_LenHist.png"))
+  ggplot2::ggsave(hist, file = paste0("QAQC/Today/Sta", sta, "_LenHist.png"))
 
   location <- ggplot2::ggplot() +
     ggplot2::geom_point(data = stnd, ggplot2::aes(x = Lon, y = Lat), col = "gray") +
@@ -75,5 +75,5 @@ make_plots <- function(sta, depth, chx, lengths, lenE, lenO, StnLoc, stnd) {
     ggplot2::ggtitle(paste("St.", sta, "- Start = Blue, End = Red, Standard = Grey")) +
     ggplot2::theme_bw()
 
-  ggplot2::ggsave(location, file = paste0("Today/Sta", sta, "_HaulPos.png"))
+  ggplot2::ggsave(location, file = paste0("QAQC/Today/Sta", sta, "_HaulPos.png"))
 }
