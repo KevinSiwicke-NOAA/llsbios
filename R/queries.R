@@ -22,7 +22,7 @@ get_data <- function(channel, sta_num) {
 
   RODBC::odbcClose(channel)
 
-  stnds <- system.file("extdata", "std_set.rds", package = "llsbios")
+  stnds <- readRDS(system.file("extdata", "std_set.rds", package = "llsbios"))
   stnd <- stnds[stnds$Station == sta_num, ]
 
   dat_list <- list(depth, position, length, stnd)
