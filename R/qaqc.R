@@ -75,7 +75,7 @@ tdr <- function(station) {
     ggplot2::scale_y_reverse() +
     ggplot2::theme_bw()
 
-  tdrCheck <- cowplot::plot_grid(p1, p2, align = 'v')
+  tdrCheck <- cowplot::plot_grid(p1, p2, ncol = 1, align = 'v')
 
   ggplot2::ggsave(tdrCheck, file=paste0("TDR/Today/Sta",station,"_TDRcheck.png"))
 
