@@ -22,7 +22,7 @@ make_plots <- function(sta, depth, chx, lengths, lenE, lenO, StnLoc) {
     ggplot2::ggtitle(paste("Station", sta)) +
     ggplot2::theme_bw()
 
-  ggsave(Deps, file=paste0("Today/Sta",sta,"_DepthCheck.png"))
+  ggplot2::ggsave(Deps, file=paste0("Today/Sta",sta,"_DepthCheck.png"))
 
   if(length(unique(lengths$Haul)) == 2) {
     hist <-  ggplot2::ggplot(data = lenE, ggplot2::aes(x = Length, weight = Tot, fill = Sex)) +
