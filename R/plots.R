@@ -54,7 +54,7 @@ make_plots <- function(sta, depth, chx, lengths, lenE, lenO, StnLoc, stnd) {
       ggplot2::xlab("Length (cm)") +
       ggplot2::ylab("Number of Sablefish") +
       ggplot2::scale_y_continuous(labels = abs) +
-      ggplot2::ggtitle(glue("Station {station} - Dark = Even, Light = Odd")) +
+      ggplot2::ggtitle(glue::glue("Station {station} - Dark = Even, Light = Odd")) +
       ggplot2::theme_bw() +
       ggplot2::theme(axis.title = ggplot2::element_text(size = 14),
                      axis.text = ggplot2::element_text(size = 12),
